@@ -12,6 +12,9 @@ console.log("coucou");
     "otherapricot",
     "lemon"
   ];
+  const allCards = [];
+  let pair = [];
+  let score = 0;
 
   // Uses shuffle algorythm provided by
   // https://bost.ocks.org/mike/shuffle/
@@ -41,16 +44,24 @@ console.log("coucou");
     const shuffleCardsRowOne = suffledCards.slice(0, 7);
     console.log("shuffleCardsRowOne", shuffleCardsRowOne);
 
-    const rowOne = createRow({ ids: shuffleCardsRowOne, rowId: "row-one" });
+    const rowOne = createRow({
+      ids: shuffleCardsRowOne,
+      rowId: "row-one"
+    });
     console.log("rowOne", rowOne);
 
     const shuffleCardsRowTwo = suffledCards.slice(7);
     console.log("shuffleCardsRowTwo", shuffleCardsRowTwo);
 
-    const rowTwo = createRow({ ids: shuffleCardsRowTwo, rowId: "row-two" });
+    const rowTwo = createRow({
+      ids: shuffleCardsRowTwo,
+      rowId: "row-two"
+    });
     console.log("rowTwo", rowTwo);
 
     game.innerHTML = `${rowOne} ${rowTwo}`;
+
+    listenToClickAndReturnCSSclasses();
   }
 
   function createRow(config) {
@@ -68,5 +79,47 @@ console.log("coucou");
     return row.join("");
   }
 
+  function listenToClickAndReturnCSSclasses() {
+    // We need to cast the retrieved array like in order for it to become a real array
+    let allCardsElements = Array.from(document.querySelectorAll(".card"));
+    // on click, it should return 'front apricot' or 'front lemon' etc...
+    allCardsElements.map(c =>
+      c.children[0].addEventListener("click", () => {
+        const cssClassesOnCard = c.children[0].classList.value;
+        console.log("cssClassesOnCard", cssClassesOnCard);
+        startPairing(c.children[0]);
+      })
+    );
+  }
+
+  function startPairing(card) {
+    pair = [...pair, card];
+    if (pair.length === 2) {
+      if (pair[0].classList.value === pair[1].classList.value) {
+        handleSuccess();
+      } else {
+        pair = [];
+      }
+    }
+  }
+
+  function handleSuccess() {
+    score = score + 1;
+    console.log("score", score);
+    pair = [];
+  }
+
   resetGame();
 })();
+
+//// [-] TODO / DONE [x]
+
+// [x] handle click on a card
+
+// [x] after one card has been clicked, second card clicked will become a pair
+
+// [x] if pair contains two cards with same id: its a win
+
+// [-] if its a win replace card of the pair by empty card
+
+// [-] make sure empty cards don't handle click event
