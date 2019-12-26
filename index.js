@@ -1,6 +1,6 @@
 console.log("coucou");
 
-// IIFE to avoid  creating global variables
+// IIFE to avoid creating global variables
 (function() {
   let game = document.querySelector("#game");
   const allFruits = [
@@ -12,7 +12,6 @@ console.log("coucou");
     "otherapricot",
     "lemon"
   ];
-  const allCards = [];
   let pair = [];
   let score = 0;
 
@@ -71,7 +70,8 @@ console.log("coucou");
       row = [
         ...row,
         `<div class="card" data-id="${idx + 1}">
-            <div class="front ${allFruits[cardId]}"></div>
+        <div class="front ${allFruits[cardId]} hidden"></div>
+        <div class="back"></div>
             </div>`
       ];
     });
@@ -79,28 +79,64 @@ console.log("coucou");
     return row.join("");
   }
 
+  function toggle(frontCard, backCard) {
+    if (frontCard.classList.contains("hidden")) {
+      frontCard.classList.remove("hidden");
+      backCard.classList.add("hidden");
+      startPairing(frontCard);
+    } else {
+      frontCard.classList.add("hidden");
+      backCard.classList.remove("hidden");
+    }
+  }
+
   function listenToClickAndReturnCSSclasses() {
     // We need to cast the retrieved array like in order for it to become a real array
     let allCardsElements = Array.from(document.querySelectorAll(".card"));
     // on click, it should return 'front apricot' or 'front lemon' etc...
-    allCardsElements.map(c =>
-      c.children[0].addEventListener("click", () => clickHandler(c))
-    );
+    allCardsElements.map(c => {
+      c.children[0].addEventListener("click", () => clickHandler(c));
+      // other child is the back card
+      c.children[1].addEventListener("click", () => clickBackCardHandler(c));
+    });
   }
 
   function clickHandler(c) {
     const cssClassesOnCard = c.children[0].classList.value;
     console.log("cssClassesOnCard", cssClassesOnCard);
-    startPairing(c.children[0]);
+    // startPairing(c.children[0]);
+  }
+
+  function clickBackCardHandler(card) {
+    console.log(card);
+    toggle(card.children[0], card.children[1]);
   }
 
   function startPairing(card) {
     pair = [...pair, card];
+    console.log("pair", pair);
     if (pair.length === 2) {
+      // if same fruit on both cards
       if (pair[0].classList.value === pair[1].classList.value) {
-        handleSuccess();
+        // to give time to gamer to see the matching pair
+        setTimeout(() => {
+          handleSuccess();
+        }, 1000);
       } else {
-        pair = [];
+        // to give time to gamer to see the none matching pair
+        setTimeout(() => {
+          // display the back of both unmatching cards
+          toggle(
+            pair[0].parentNode.children[0],
+            pair[0].parentNode.children[1]
+          );
+          toggle(
+            pair[1].parentNode.children[0],
+            pair[1].parentNode.children[1]
+          );
+          // different cards, just reset the array
+          pair = [];
+        }, 1000);
       }
     }
   }

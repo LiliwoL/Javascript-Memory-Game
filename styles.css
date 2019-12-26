@@ -32,8 +32,6 @@ body {
 }
 
 .disabledcard {
-    color: aqua;
-    z-index: 999;
     visibility: hidden;
 }
 
@@ -46,12 +44,17 @@ img {
     width: 100px;
     height: 100px;
     background-color: #666;
+
 }
 
 .front {
     width: 100px;
     height: 100px;
     background-color: #666;
+}
+
+.hidden {
+    display: none;
 }
 
 
