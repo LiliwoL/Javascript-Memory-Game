@@ -2,6 +2,17 @@ console.log("coucou");
 
 // IIFE to avoid  creating global variables
 (function() {
+  let game = document.querySelector("#game");
+  const allFruits = [
+    "cherry",
+    "banana",
+    "apricot",
+    "lime",
+    "redwhatever",
+    "otherapricot",
+    "lemon"
+  ];
+
   // Uses shuffle algorythm provided by
   // https://bost.ocks.org/mike/shuffle/
   function shuffle(array) {
@@ -21,10 +32,41 @@ console.log("coucou");
     }
     return array;
   }
+
   function resetGame() {
-    const allCards = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+    const allCards = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
     const suffledCards = shuffle(allCards);
     console.log(suffledCards);
+
+    const shuffleCardsRowOne = suffledCards.slice(0, 7);
+    console.log("shuffleCardsRowOne", shuffleCardsRowOne);
+
+    const rowOne = createRow({ ids: shuffleCardsRowOne, rowId: "row-one" });
+    console.log("rowOne", rowOne);
+
+    const shuffleCardsRowTwo = suffledCards.slice(7);
+    console.log("shuffleCardsRowTwo", shuffleCardsRowTwo);
+
+    const rowTwo = createRow({ ids: shuffleCardsRowTwo, rowId: "row-two" });
+    console.log("rowTwo", rowTwo);
+
+    game.innerHTML = `${rowOne} ${rowTwo}`;
   }
+
+  function createRow(config) {
+    const { ids, rowId } = config;
+    let row = [`<div class="row" id="${rowId}">`];
+    ids.map((cardId, idx) => {
+      row = [
+        ...row,
+        `<div class="card" data-id="${idx + 1}">
+            <div class="front ${allFruits[cardId]}"></div>
+            </div>`
+      ];
+    });
+    row = [...row, "</div>"];
+    return row.join("");
+  }
+
   resetGame();
 })();
