@@ -84,12 +84,14 @@ console.log("coucou");
     let allCardsElements = Array.from(document.querySelectorAll(".card"));
     // on click, it should return 'front apricot' or 'front lemon' etc...
     allCardsElements.map(c =>
-      c.children[0].addEventListener("click", () => {
-        const cssClassesOnCard = c.children[0].classList.value;
-        console.log("cssClassesOnCard", cssClassesOnCard);
-        startPairing(c.children[0]);
-      })
+      c.children[0].addEventListener("click", () => clickHandler(c))
     );
+  }
+
+  function clickHandler(c) {
+    const cssClassesOnCard = c.children[0].classList.value;
+    console.log("cssClassesOnCard", cssClassesOnCard);
+    startPairing(c.children[0]);
   }
 
   function startPairing(card) {
@@ -106,20 +108,11 @@ console.log("coucou");
   function handleSuccess() {
     score = score + 1;
     console.log("score", score);
+    pair[0].removeEventListener("click", clickHandler);
+    pair[0].classList.add("disabledcard");
+    pair[1].classList.add("disabledcard");
     pair = [];
   }
 
   resetGame();
 })();
-
-//// [-] TODO / DONE [x]
-
-// [x] handle click on a card
-
-// [x] after one card has been clicked, second card clicked will become a pair
-
-// [x] if pair contains two cards with same id: its a win
-
-// [-] if its a win replace card of the pair by empty card
-
-// [-] make sure empty cards don't handle click event

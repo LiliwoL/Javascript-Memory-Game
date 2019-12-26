@@ -31,6 +31,12 @@ body {
     float: left;
 }
 
+.disabledcard {
+    color: aqua;
+    z-index: 999;
+    visibility: hidden;
+}
+
 img {
     width: 100px;
     background-color: #666;
