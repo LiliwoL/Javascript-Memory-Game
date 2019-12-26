@@ -8,3 +8,147 @@ body {
     background-color: #ccc;
     height: 100vh;
 }
+
+.game {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: block;
+    height: 100vh;
+    width: 100vh;
+    margin: 0;
+    border: 0;
+}
+
+.row {
+    width: 100%;
+    border: 2px solid blue;
+    height: 115px;
+}
+
+.card {
+    width: 105px;
+    height: 105px;
+    float: left;
+}
+
+img {
+    width: 100px;
+    background-color: #666;
+}
+
+.back {
+    width: 100px;
+    height: 100px;
+    background-color: #666;
+}
+
+.front {
+    width: 100px;
+    height: 100px;
+    background-color: #666;
+}
+
+
+.cherry {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 0px;
+    border: 2px solid red;
+    margin: 5px;
+
+}
+
+.banana {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 1697px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.apricot {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 1597px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.lime {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 1497px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.redwhatever {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 3197px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.otherapricot {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 2697px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.lemon {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 2997px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.strawberry {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 2997px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.lemon {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 2997px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.lemon {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 2997px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.lemon {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 2997px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.lemon {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 2997px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.lemon {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 2997px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.lemon {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 2997px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.invisible {
+    display: none;
+}
