@@ -20,7 +20,8 @@ console.log("coucou");
 
   const bar = document.querySelector(".bar");
   let elaspedTime = 0;
-  const totalDurationInSec = 10;
+  const totalDurationInSec = 120;
+  let intervalId = -1;
 
   // Uses shuffle algorythm provided by
   // https://bost.ocks.org/mike/shuffle/
@@ -67,8 +68,14 @@ console.log("coucou");
     game.innerHTML = `${rowOne} ${rowTwo}`;
 
     listenToClickAndReturnCSSclasses();
-
+    resetVariables();
     startTimer();
+  }
+
+  function resetVariables() {
+    pair = [];
+    score = 0;
+    elaspedTime = 0;
   }
 
   function createRow(config) {
@@ -156,28 +163,45 @@ console.log("coucou");
     pair[0].classList.add("disabledcard");
     pair[1].classList.add("disabledcard");
     pair = [];
+    evaluatePlayer();
   }
 
   function startTimer() {
-    const id = setInterval(() => {
+    intervalId = setInterval(() => {
       elaspedTime = elaspedTime + 1;
       const currentWidth = (elaspedTime * 100) / totalDurationInSec;
       bar.style.width = currentWidth + "%";
       if (currentWidth >= 100) {
-        clearInterval(id);
-        setTimeout(() => {
-          evaluatePlayer();
-        }, 1000);
+        clearGameTimer();
       }
     }, 1000);
   }
 
+  function clearGameTimer() {
+    clearInterval(intervalId);
+    //we set the interval to -999 to know this game is over
+    intervalId = -999;
+    setTimeout(() => {
+      evaluatePlayer();
+    }, 1000);
+  }
+
   function evaluatePlayer() {
-    // 1 point gained per pair found
-    if (allCards / 2 === score) {
-      congratulate();
+    // if we evalutate right after game is over (== time elapsed)
+    if (intervalId === -999) {
+      if (allCards.length / 2 === score) {
+        // 1 point gained per pair found so if score is half the number of cards, it's a win :)
+        congratulate();
+      } else {
+        encourageToRetry();
+      }
     } else {
-      encourageToRetry();
+      // we want to know if it's a win before time is over
+      if (allCards.length / 2 === score) {
+        // there is remaining time so let's clear the timer
+        clearGameTimer();
+        congratulate();
+      }
     }
   }
 
