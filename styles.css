@@ -57,6 +57,18 @@ img {
     display: none;
 }
 
+.timer {
+    width: 731px;
+    border: 1px solid red;
+    height: 20px;
+}
+
+.bar {
+    width: 1%;
+    height: 18px;
+    background-color: red;
+}
+
 
 .cherry {
     background: url('images/cards.png') 0 0;

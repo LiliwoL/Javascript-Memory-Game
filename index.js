@@ -15,6 +15,10 @@ console.log("coucou");
   let pair = [];
   let score = 0;
 
+  const bar = document.querySelector(".bar");
+  let elaspedTime = 0;
+  const totalDurationInSec = 10;
+
   // Uses shuffle algorythm provided by
   // https://bost.ocks.org/mike/shuffle/
   function shuffle(array) {
@@ -61,6 +65,8 @@ console.log("coucou");
     game.innerHTML = `${rowOne} ${rowTwo}`;
 
     listenToClickAndReturnCSSclasses();
+
+    startTimer();
   }
 
   function createRow(config) {
@@ -148,6 +154,17 @@ console.log("coucou");
     pair[0].classList.add("disabledcard");
     pair[1].classList.add("disabledcard");
     pair = [];
+  }
+
+  function startTimer() {
+    const id = setInterval(() => {
+      elaspedTime = elaspedTime + 1;
+      const currentWidth = (elaspedTime * 100) / totalDurationInSec;
+      bar.style.width = currentWidth + "%";
+      if (currentWidth >= 100) {
+        clearInterval(id);
+      }
+    }, 1000);
   }
 
   resetGame();
