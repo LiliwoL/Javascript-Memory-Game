@@ -17,6 +17,7 @@ console.log("coucou");
 
   let pair = [];
   let score = 0;
+  let nbCardsClicked = 0;
 
   const bar = document.querySelector(".bar");
   let elaspedTime = 0;
@@ -76,6 +77,7 @@ console.log("coucou");
     pair = [];
     score = 0;
     elaspedTime = 0;
+    nbCardsClicked = 0;
   }
 
   function createRow(config) {
@@ -123,6 +125,10 @@ console.log("coucou");
   }
 
   function clickBackCardHandler(card) {
+    if (nbCardsClicked === 2) {
+      return;
+    }
+    nbCardsClicked = nbCardsClicked + 1;
     console.log(card);
     toggle(card.children[0], card.children[1]);
   }
@@ -135,6 +141,7 @@ console.log("coucou");
       if (pair[0].classList.value === pair[1].classList.value) {
         // to give time to gamer to see the matching pair
         setTimeout(() => {
+          nbCardsClicked = 0;
           handleSuccess();
         }, 1000);
       } else {
@@ -151,6 +158,7 @@ console.log("coucou");
           );
           // different cards, just reset the array
           pair = [];
+          nbCardsClicked = 0;
         }, 1000);
       }
     }
