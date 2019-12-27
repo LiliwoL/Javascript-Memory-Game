@@ -168,8 +168,7 @@ console.log("coucou");
     score = score + 1;
     console.log("score", score);
     pair[0].removeEventListener("click", clickHandler);
-    pair[0].classList.add("disabledcard");
-    pair[1].classList.add("disabledcard");
+    pair[1].removeEventListener("click", clickHandler);
     pair = [];
     evaluatePlayer();
   }

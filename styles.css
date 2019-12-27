@@ -31,10 +31,6 @@ body {
     float: left;
 }
 
-.disabledcard {
-    visibility: hidden;
-}
-
 img {
     width: 100px;
     background-color: #666;
