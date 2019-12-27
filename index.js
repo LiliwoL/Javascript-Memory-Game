@@ -12,6 +12,9 @@ console.log("coucou");
     "otherapricot",
     "lemon"
   ];
+
+  const allCards = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
+
   let pair = [];
   let score = 0;
 
@@ -40,7 +43,6 @@ console.log("coucou");
   }
 
   function resetGame() {
-    const allCards = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
     const suffledCards = shuffle(allCards);
     console.log(suffledCards);
 
@@ -163,8 +165,28 @@ console.log("coucou");
       bar.style.width = currentWidth + "%";
       if (currentWidth >= 100) {
         clearInterval(id);
+        setTimeout(() => {
+          evaluatePlayer();
+        }, 1000);
       }
     }, 1000);
+  }
+
+  function evaluatePlayer() {
+    // 1 point gained per pair found
+    if (allCards / 2 === score) {
+      congratulate();
+    } else {
+      encourageToRetry();
+    }
+  }
+
+  function congratulate() {
+    window.alert("Vous avez gagnééééé");
+  }
+
+  function encourageToRetry() {
+    window.alert("Vous avez perduuuuu");
   }
 
   resetGame();
