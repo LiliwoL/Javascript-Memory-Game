@@ -232,7 +232,7 @@ console.log("coucou");
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        points: score,
+        time: elaspedTime,
         date: new Date().toISOString()
       })
     }).then(data => {
