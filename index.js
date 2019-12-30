@@ -23,6 +23,7 @@ console.log("coucou");
   let elaspedTime = 0;
   const totalDurationInSec = 120;
   let intervalId = -1;
+  const backendURL = "http://localhost:5000/scores";
 
   // Uses shuffle algorythm provided by
   // https://bost.ocks.org/mike/shuffle/
@@ -214,10 +215,29 @@ console.log("coucou");
 
   function congratulate() {
     window.alert("Vous avez gagnééééé");
+    saveScoreToServer(score);
   }
 
   function encourageToRetry() {
     window.alert("Vous avez perduuuuu");
+    saveScoreToServer(score);
+  }
+
+  function saveScoreToServer(score) {
+    // posting current score to server
+    fetch(backendURL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        points: score,
+        date: new Date().toISOString()
+      })
+    }).then(data => {
+      console.log(data);
+    });
   }
 
   resetGame();
