@@ -65,6 +65,11 @@ img {
     background-color: red;
 }
 
+.best-scores {
+    text-align: center;
+    padding-top: 20px;
+}
+
 
 .cherry {
     background: url('images/cards.png') 0 0;

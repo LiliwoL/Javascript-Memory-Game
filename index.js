@@ -21,9 +21,11 @@ console.log("coucou");
 
   const bar = document.querySelector(".bar");
   let elaspedTime = 0;
-  const totalDurationInSec = 120;
+  const totalDurationInSec = 6;
   let intervalId = -1;
   const backendURL = "http://localhost:5000/scores";
+  const bestScores = [];
+  const bestScoresDiv = document.querySelector(".best-scores");
 
   // Uses shuffle algorythm provided by
   // https://bost.ocks.org/mike/shuffle/
@@ -46,6 +48,7 @@ console.log("coucou");
   }
 
   function resetGame() {
+    getBestScores();
     const suffledCards = shuffle(allCards);
     console.log(suffledCards);
 
@@ -72,6 +75,23 @@ console.log("coucou");
     listenToClickAndReturnCSSclasses();
     resetVariables();
     startTimer();
+  }
+
+  function getBestScores() {
+    fetch(backendURL)
+      .then(data => data.json())
+      .then(data => {
+        console.log(data);
+        let scores = [];
+        data.scores.map(score => {
+          scores = [
+            ...scores,
+            `<li>${score.user} - ${score.time} secondes</li>`
+          ];
+        });
+        scores = ["<h3>Best Scores</h3>", "<ul>", ...scores, "</ul>"];
+        bestScoresDiv.innerHTML = scores.join("");
+      });
   }
 
   function resetVariables() {
@@ -122,7 +142,6 @@ console.log("coucou");
   function clickHandler(c) {
     const cssClassesOnCard = c.children[0].classList.value;
     console.log("cssClassesOnCard", cssClassesOnCard);
-    // startPairing(c.children[0]);
   }
 
   function clickBackCardHandler(card) {
@@ -215,7 +234,7 @@ console.log("coucou");
 
   function congratulate() {
     window.alert("Vous avez gagnééééé");
-    saveScoreToServer(score);
+    saveScoreToServer();
   }
 
   function encourageToRetry() {
@@ -223,7 +242,7 @@ console.log("coucou");
     saveScoreToServer(score);
   }
 
-  function saveScoreToServer(score) {
+  function saveScoreToServer() {
     // posting current score to server
     fetch(backendURL, {
       method: "POST",
