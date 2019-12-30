@@ -9,6 +9,10 @@ body {
     height: 100vh;
 }
 
+ul {
+    list-style-type: none;
+}
+
 .game {
     position: absolute;
     top: 0px;
@@ -57,6 +61,7 @@ img {
     width: 731px;
     border: 1px solid red;
     height: 20px;
+    margin-top: 120px;
 }
 
 .bar {
@@ -123,49 +128,77 @@ img {
 
 .strawberry {
     background: url('images/cards.png') 0 0;
-    background-position: 0px 2997px;
+    background-position: 0px 1100px;
     border: 2px solid red;
     margin: 5px;
 }
 
-.lemon {
+.greenapple {
     background: url('images/cards.png') 0 0;
-    background-position: 0px 2997px;
+    background-position: 0px 1000px;
     border: 2px solid red;
     margin: 5px;
 }
 
-.lemon {
+.peach {
     background: url('images/cards.png') 0 0;
-    background-position: 0px 2997px;
+    background-position: 0px 900px;
     border: 2px solid red;
     margin: 5px;
 }
 
-.lemon {
+.grape {
     background: url('images/cards.png') 0 0;
-    background-position: 0px 2997px;
+    background-position: 0px 800px;
     border: 2px solid red;
     margin: 5px;
 }
 
-.lemon {
+.watermelon {
     background: url('images/cards.png') 0 0;
-    background-position: 0px 2997px;
+    background-position: 0px 700px;
     border: 2px solid red;
     margin: 5px;
 }
 
-.lemon {
+.plum {
     background: url('images/cards.png') 0 0;
-    background-position: 0px 2997px;
+    background-position: 0px 600px;
     border: 2px solid red;
     margin: 5px;
 }
 
-.lemon {
+.pear {
     background: url('images/cards.png') 0 0;
-    background-position: 0px 2997px;
+    background-position: 0px 500px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.cherry {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 400px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.raspberry {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 300px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.mango {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 200px;
+    border: 2px solid red;
+    margin: 5px;
+}
+
+.yellowcherry {
+    background: url('images/cards.png') 0 0;
+    background-position: 0px 100px;
     border: 2px solid red;
     margin: 5px;
 }

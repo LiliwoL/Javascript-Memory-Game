@@ -10,10 +10,50 @@ console.log("coucou");
     "lime",
     "redwhatever",
     "otherapricot",
-    "lemon"
+    "lemon",
+    "strawberry",
+    "greenapple",
+    "peach",
+    "grape",
+    "watermelon",
+    "plum",
+    "pear",
+    "cherry",
+    "raspberry",
+    "mango",
+    "yellowcherry"
   ];
 
-  const allCards = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
+  const allCards = [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13
+  ];
 
   let pair = [];
   let score = 0;
@@ -21,10 +61,9 @@ console.log("coucou");
 
   const bar = document.querySelector(".bar");
   let elaspedTime = 0;
-  const totalDurationInSec = 6;
+  const totalDurationInSec = 120;
   let intervalId = -1;
   const backendURL = "http://localhost:5000/scores";
-  const bestScores = [];
   const bestScoresDiv = document.querySelector(".best-scores");
 
   // Uses shuffle algorythm provided by
@@ -59,18 +98,36 @@ console.log("coucou");
       ids: shuffleCardsRowOne,
       rowId: "row-one"
     });
-    console.log("rowOne", rowOne);
+    // console.log("rowOne", rowOne);
 
-    const shuffleCardsRowTwo = suffledCards.slice(7);
+    const shuffleCardsRowTwo = suffledCards.slice(7, 14);
     console.log("shuffleCardsRowTwo", shuffleCardsRowTwo);
 
     const rowTwo = createRow({
       ids: shuffleCardsRowTwo,
       rowId: "row-two"
     });
-    console.log("rowTwo", rowTwo);
+    // console.log("rowTwo", rowTwo);
 
-    game.innerHTML = `${rowOne} ${rowTwo}`;
+    const shuffleCardsRowThree = suffledCards.slice(14, 21);
+    console.log("shuffleCardsRowThree", shuffleCardsRowThree);
+
+    const rowThree = createRow({
+      ids: shuffleCardsRowThree,
+      rowId: "row-three"
+    });
+    // console.log("rowThree", rowThree);
+
+    const shuffleCardsRowFour = suffledCards.slice(21);
+    console.log("shuffleCardsRowFour", shuffleCardsRowFour);
+
+    const rowFour = createRow({
+      ids: shuffleCardsRowFour,
+      rowId: "row-four"
+    });
+    // console.log("rowFour", rowFour);
+
+    game.innerHTML = `${rowOne} ${rowTwo} ${rowThree} ${rowFour}`;
 
     listenToClickAndReturnCSSclasses();
     resetVariables();
@@ -208,9 +265,9 @@ console.log("coucou");
     clearInterval(intervalId);
     //we set the interval to -999 to know this game is over
     intervalId = -999;
-    setTimeout(() => {
-      evaluatePlayer();
-    }, 1000);
+    // setTimeout(() => {
+    //   evaluatePlayer(); // TODO test if causes double save ?
+    // }, 1000);
   }
 
   function evaluatePlayer() {
