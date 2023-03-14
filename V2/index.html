@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang=fr>
+	<head>
+		<title>Mémo</title>
+		<meta charset=utf-8>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+		<link href="style.css" rel="stylesheet"></link>
+	</head>
+	<body onload="init()">
+		<h1>Mémo</h1>
+
+		<table id="damier"></table>
+
+		<p>Nombre d'erreur(s) : <span id="erreurs"></span></p>
+
+		<p>Recommencer avec :
+			<select onchange="restart(this.value)">
+				<option value="3">3 paires (3 x 2)
+				<option value="4">4 paires (4 x 2)
+				<option value="6">6 paires (4 x 3)
+				<option value="8">8 paires (4 x 4)
+				<option value="10">10 paires (5 x 4)
+				<option value="12">12 paires (6 x 4)
+				<option value="16">16 paires (8 x 4)
+				<option value="20">20 paires (8 x 5)
+				<option value="22">22 paires (11 x 4)
+				<option value="24">24 paires (8 x 6)
+				<option value="26">26 paires (13 x 4)
+				<option value="28">28 paires (8 x 7)
+			</select>
+		</p>
+
+		<div id="monitor">
+			La particularité de ce mémo est qu'il vous indique le nombre d'erreurs, et non pas le nombre de coups.
+			<br>
+			Si vous ne faites aucune erreur, vous obtiendrez une "manche parfaite" !
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>

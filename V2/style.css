@@ -1,0 +1,30 @@
+body {
+	font-family:arial;
+}
+
+#damier td {
+	padding : 3px;
+	color:#088;
+	width:58px;
+	height:52px;
+}
+
+#damier td > div {
+	text-align:center;
+	width:56px;height:50px;
+	font-size:250%;
+	font-weight:bold;
+	box-radius : 5px;
+	box-shadow : 3px 3px 3px #0AA;
+	border : solid 1px #0AA;
+	background-color : linear-gradient(#FFF, #AFF);
+}
+
+#monitor {
+	margin-top:10px;
+	font-size:75%
+}
+
+#damier {
+	border : solid 1px #CCC;
+}

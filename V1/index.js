@@ -1,5 +1,3 @@
-console.log("coucou");
-
 // IIFE to avoid creating global variables
 (function() {
   let game = document.querySelector("#game");
