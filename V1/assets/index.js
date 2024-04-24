@@ -1,6 +1,9 @@
 // IIFE to avoid creating global variables
+// https://developer.mozilla.org/fr/docs/Glossary/IIFE
 (function() {
+  // Récupération de l'élément #game
   let game = document.querySelector("#game");
+
   const allFruits = [
     "cherry",
     "banana",
